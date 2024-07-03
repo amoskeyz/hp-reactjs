@@ -1,0 +1,54 @@
+{
+  "name": "@amoskeyz/hp-reactjs",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/amoskeyz"
+  },
+  "version": "0.0.1",
+  "description": "Hydrogen's Pay React Js wrapper",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "npm install && npm run rollup",
+    "rollup": "rollup -c --bundleConfigAsCjs",
+    "start": "rollup -c -w --bundleConfigAsCjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HydrogenAfrica/hydrogenpay-reactjs.git"
+  },
+  "keywords": [
+    "hydrogenpay"
+  ],
+  "author": "amoskeyz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HydrogenAfrica/hydrogenpay-reactjs/issues"
+  },
+  "homepage": "https://github.com/HydrogenAfrica/hydrogenpay-reactjs#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "rollup": "^3.29.4",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.3"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
+  },
+  "directories": {
+    "example": "example"
+  }
+}
