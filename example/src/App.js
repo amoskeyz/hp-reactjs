@@ -1,52 +1,47 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { useHydrogenPayment } from "hydrogen-reactjs";
+import {
+  useHydrogenPayment,
+  HydrogenPaymentButton,
+} from "@amoskeyz/hp-reactjs";
 
 function App() {
   const options = {
-    public_key: "SBTESTPUBK_t4G16GCA1O51AV0Va3PPretaisXubSw1",
-    amount: 100,
-    tranref: new Date().getTime(),
-    currency: "NGN",
-    email: "test@mail.com",
-    full_name: "",
-    mobile_no: "",
-    description: "",
-    tokenize: false,
-    planId: "",
-    customization: {
-      theme: {
-        border_color: "#000000",
-        background_color: "#004C64",
-        button_color: "#0084A0",
-      },
-      payment_method: ["card", "account", "transfer", "wallet", "ussd"],
-      display_fee: true, // true
-      display_type: "embed", //inline
-      logo: "logo_url | base64",
-    },
+    amount: 500, // REQUIRED
+    email: "test@mail.com", // REQUIRED
+    customerName: "John Doe", // REQUIRED
+    meta: "ewr34we4w", // OPTIONAL
+    token: "02B44E61C25BDB6C52E50D0B6A4E1016F993CE6B625BF7812A018CE43C886872", // REQUIRED
+    description: "Test description", // OPTIONAL
+    currency: "NGN", // REQUIRED
+    frequency: 1, // OPTIONAL
+    isRecurring: false, // OPTIONAL
+    autoStart: false, // OPTIONAL
+    mode: "TEST", //REQUIRED
   };
 
-  const close = (close) => {
+  const onClose = (close) => {
     console.log(close);
   };
-  const callback = (response, closeCheckout) => {
+  const onSuccess = (response, closeCheckout) => {
     console.log(response);
 
     setTimeout(() => closeCheckout(), 2000);
   };
+
   const PayButton = () => {
     const initializePayment = useHydrogenPayment({
       ...options,
-      callback,
-      close,
+      onSuccess,
+      onClose,
     });
-    return <button onClick={initializePayment}>Pay</button>;
+
+    return <button onClick={() => initializePayment()}>Pay</button>;
   };
   return (
     <div className="App">
-      <PayButton />
-
+      {/* <PayButton /> */}
+      <HydrogenPaymentButton options={{ ...options, onSuccess, onClose }} />
     </div>
   );
 }
